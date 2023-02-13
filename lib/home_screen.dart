@@ -9,49 +9,61 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Counter App'),
+        title: const Text('Counter App'),
       ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            BlocBuilder<CounterBloc, CounterState>(
-              builder: (context, state) {
-                return Center(
-                  child: Text(
-                    'CounterValue : ${state.counterValue}',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                );
-              },
+            Center(
+              child: BlocConsumer<CounterBloc, CounterState>(
+                listener: (context, state) {
+                  if (state is IncrementState) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Successfully Increased'),
+                      duration: Duration(milliseconds: 300),
+                    ));
+                  } else if (state is DecrementState) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Successfully Decreased'),
+                      duration: Duration(milliseconds: 300),
+                    ));
+                  }
+                },
+                builder: (context, state) {
+                  return Text(
+                    'Counter Value ${state.counterValue}',
+                  );
+                },
+              ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: () =>context
+                      onPressed: () => context
                           .read<CounterBloc>()
                           .add(CounterDecrementEvent()),
-                      icon: Icon(Icons.remove),
-                      label: Text('Decrease'),
+                      icon: const Icon(Icons.remove),
+                      label: const Text('Decrease'),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed:() => context
+                      onPressed: () => context
                           .read<CounterBloc>()
                           .add(CounterIncrementEvent()),
-                      icon: Icon(Icons.add),
-                      label: Text('Increase'),
+                      icon: const Icon(Icons.add),
+                      label: const Text('Increase'),
                     ),
                   ),
                 ],

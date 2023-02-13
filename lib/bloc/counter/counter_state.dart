@@ -9,5 +9,13 @@ part of 'counter_bloc.dart';
 }
 
 class CounterInitial extends CounterState {
-  CounterInitial():super(counterValue: 0);
+  const CounterInitial():super(counterValue: 0);
+}
+
+class IncrementState extends CounterState{
+  const IncrementState(int increasedValue):super(counterValue: increasedValue);
+}
+
+class DecrementState extends CounterState{
+  const DecrementState(int decreasedValue):super(counterValue: decreasedValue);
 }

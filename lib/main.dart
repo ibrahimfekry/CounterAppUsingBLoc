@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:increment_decrement/home_screen.dart';
 import 'bloc/bloc_imports.dart';
+
 void main() {
-  runApp(const MyApp());
+  return runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
