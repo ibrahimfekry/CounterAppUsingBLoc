@@ -1,6 +1,6 @@
 # increment_decrement
 
-A new Flutter project.
+Counter App repo using state management Bloc 
 
 ## Getting Started
 
